@@ -1,0 +1,196 @@
+[
+    {
+        "id": 1,
+        "name": "Hammerhead",
+        "image": "hammerhead.jpg",
+        "description": "The hammerhead shark is a type of shark that is easily identified by the unique shape of its head. The hammerhead shark's head is flattened and laterally extended into a 'hammer' shape called the 'cephalofoil'.",
+        "genus": "Sphyrnidae",
+        "fun_facts": [
+            "They have a 360-degree field of vision.",
+            "They are known to school in large numbers during the day.",
+            "They are known to be nocturnal hunters."
+        ],
+        "diet": [
+            "Fish",
+            "Squid",
+            "Crustaceans"
+        ],
+        "habitat": "Tropical and warm temperate waters worldwide",
+        "size": "13 to 20 feet",
+        "lifespan": "20 to 30 years",
+        "recorded_attacks": "17 unprovoked attacks, 0 fatal",
+        "popularity": 2
+    },
+    {
+        "id": 2,
+        "name": "Great White",
+        "image": "great_white.jpg",
+        "description": "The Great White Shark is a species of large shark which can be found in the coastal waters of all the major oceans. The Great White Shark is known for its size, with the largest individuals known to have approached or exceeded 6 meters (20 ft) in length.",
+        "genus": "Carcharodon",
+        "fun_facts": [
+            "They can detect a drop of blood in 25 gallons of water.",
+            "They can swim up to 15 miles per hour.",
+            "They can jump up to 10 feet out of the water."
+        ],
+        "diet": [
+            "Seals",
+            "Sea lions",
+            "Small toothed whales"
+        ],
+        "habitat": "Coastal surface waters",
+        "size": "15 to 20 feet",
+        "lifespan": "30 to 40 years",
+        "recorded_attacks": "314 unprovoked attacks, 80 fatal",
+        "popularity": 1
+    },
+    {
+        "id": 3,
+        "name": "Tiger",
+        "image": "tiger.jpg",
+        "description": "The tiger shark is a species of requiem shark and the only extant member of the genus Galeocerdo. It is a large macropredator, capable of attaining a length over 5 m (16 ft 5 in).",
+        "genus": "Galeocerdo",
+        "fun_facts": [
+            "They have a reputation for attacking humans.",
+            "They are known to eat garbage.",
+            "They have a unique pattern of stripes on their skin."
+        ],
+        "diet": [
+            "Fish",
+            "Seals",
+            "Birds"
+        ],
+        "habitat": "Warm and tropical waters",
+        "size": "10 to 14 feet",
+        "lifespan": "27 years",
+        "recorded_attacks": "111 unprovoked attacks, 31 fatal",
+        "popularity": 3
+    },
+    {
+        "id": 4,
+        "name": "Bull",
+        "image": "bull.jpg",
+        "description": "The bull shark is a species of shark that can be found in warm, shallow waters along coasts and in rivers. The bull shark is known for its aggressive behavior and is considered to be one of the most dangerous sharks in the world.",
+        "genus": "Carcharhinus",
+        "fun_facts": [
+            "They can live in both saltwater and freshwater.",
+            "They are known to be aggressive.",
+            "They are known to be territorial."
+        ],
+        "diet": [
+            "Fish",
+            "Dolphins",
+            "Birds"
+        ],
+        "habitat": "Warm, shallow waters",
+        "size": "7 to 11 feet",
+        "lifespan": "16 years",
+        "recorded_attacks": "100 unprovoked attacks, 27 fatal",
+        "popularity": 4
+    },
+    {
+        "id": 5,
+        "name": "Blacktip",
+        "image": "blacktip.jpg",
+        "description": "The blacktip shark is a species of requiem shark, and part of the family Carcharhinidae. It is common to coastal tropical and subtropical waters around the world.",
+        "genus": "Carcharhinus",
+        "fun_facts": [
+            "They are known for their acrobatic jumps.",
+            "They are one of the most important species to the shark fin trade."
+        ],
+        "diet": [
+            "Fish",
+            "Squid",
+            "Stingrays"
+        ],
+        "habitat": "Coastal tropical and subtropical waters",
+        "size": "4.9 to 8.2 feet",
+        "lifespan": "12 years",
+        "recorded_attacks": "28 unprovoked attacks, 1 fatal",
+        "popularity": 9
+    },
+    {
+        "id": 6,
+        "name": "Whitetip",
+        "image": "whitetip.jpg",
+        "description": "The oceanic whitetip shark is a large pelagic shark inhabiting tropical and warm temperate seas. Its stocky body is most notable for its long, white-tipped, rounded fins.",
+        "genus": "Carcharhinus",
+        "fun_facts": [
+            "They are known for their curious and aggressive behavior.",
+            "They are one of the most dangerous sharks to humans."
+        ],
+        "diet": [
+            "Fish",
+            "Squid",
+            "Sea birds"
+        ],
+        "habitat": "Tropical and warm temperate seas",
+        "size": "10 to 13 feet",
+        "lifespan": "22 years",
+        "recorded_attacks": "10 unprovoked attacks, 3 fatal",
+        "popularity": 8
+    },
+    {
+        "id": 7,
+        "name": "Lemon",
+        "image": "lemon.jpg",
+        "description": "The lemon shark is a species of shark from the family Carcharhinidae and is classified as a near-threatened species by the International Union for Conservation of Nature.",
+        "genus": "Negaprion",
+        "fun_facts": [
+            "They are known for their yellowish color.",
+            "They have poor eyesight and rely on their sense of smell."
+        ],
+        "diet": [
+            "Fish",
+            "Crustaceans",
+            "Birds"
+        ],
+        "habitat": "Subtropical waters",
+        "size": "8 to 10 feet",
+        "lifespan": "27 years",
+        "recorded_attacks": "10 unprovoked attacks, 0 fatal",
+        "popularity": 6
+    },
+    {
+        "id": 8,
+        "name": "Basking",
+        "image": "basking.jpg",
+        "description": "The basking shark is the second-largest living shark, after the whale shark, and one of three plankton-eating shark species, along with the whale shark and megamouth shark.",
+        "genus": "Cetorhinus",
+        "fun_facts": [
+            "They are known for their large mouth and gill slits.",
+            "They are one of the three plankton-eating sharks."
+        ],
+        "diet": [
+            "Plankton",
+            "Small fish",
+            "Invertebrates"
+        ],
+        "habitat": "Temperate oceans",
+        "size": "20 to 26 feet",
+        "lifespan": "50 years",
+        "recorded_attacks": "0 unprovoked attacks, 0 fatal",
+        "popularity": 7
+    },
+    {
+        "id": 9,
+        "name": "Whale",
+        "image": "whale.jpg",
+        "description": "The whale shark is a slow-moving, filter-feeding carpet shark and the largest known extant fish species. It is the sole member of the genus Rhincodon and the family, Rhincodontidae.",
+        "genus": "Rhincodon",
+        "fun_facts": [
+            "They are the largest fish in the world.",
+            "Despite their size, they feed mostly on plankton.",
+            "They have a lifespan of about 70 to 100 years."
+        ],
+        "diet": [
+            "Plankton",
+            "Small fish",
+            "Squid"
+        ],
+        "habitat": "Open seas",
+        "size": "18 to 32.8 feet",
+        "lifespan": "70 to 100 years",
+        "recorded_attacks": "0 unprovoked attacks, 0 fatal",
+        "popularity": 5
+    }
+]
