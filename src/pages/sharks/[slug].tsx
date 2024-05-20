@@ -8,7 +8,7 @@ export async function getStaticPaths() {
   return { paths, fallback: false }
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }: any) {
   const shark = SharkData.find((shark) => shark.name.toLowerCase().replace(' ', '_') === params.slug)
   return { props: { shark } }
 }
@@ -21,7 +21,7 @@ export interface SharkType {
   genus?: string;
   description?: string;
   fun_facts?: string[];
-  diet?: string;
+  diet?: string[];
   habitat?: string;
   size?: string;
   lifespan?: string;

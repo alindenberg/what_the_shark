@@ -1,4 +1,4 @@
-import { SharkType } from '../pages/sharks/[slug].tsx';
+import { SharkType } from '../pages/sharks/[slug]';
 
 interface SharkDetailsTableProps {
     shark: SharkType;
