@@ -14,9 +14,14 @@ export default function Home() {
     const sorted = [...Sharks].sort((a, b) => {
       if (sortOrder === 'asc') {
         return a.name.localeCompare(b.name);
-      } else {
+      }
+      else if (sortOrder === 'desc') {
         return b.name.localeCompare(a.name);
       }
+      else if (sortOrder === 'popularity') {
+        return a.popularity - b.popularity;
+      }
+      return 0;
     });
     setSortedSharks(sorted);
   }, [sortOrder]);
@@ -27,9 +32,9 @@ export default function Home() {
 
   return (
     <main
-      className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+      className={`flex min-h-screen flex-col items-center md:pt-12 pt-6 ${inter.className}`}
     >
-      <div className="flex flex-col justify-center items-center w-full">
+      <div className="flex flex-col justify-center items-center w-full border-5">
         <div className="text-center mx-auto">
           <h1 className="text-2xl underline font-bold">Sharks</h1>
           <h3 className="text-md font-medium">Explore the many types of beautiful sharks on this earth.</h3>
