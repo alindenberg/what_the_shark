@@ -22,7 +22,7 @@ export default function Sharks({ shark }: { shark: SharkType }) {
   return (
     <div className="flex min-h-screen flex-col items-center pt-10">
       {shark && (
-        <div className="text-center sm:w-3/4 p-2">
+        <div className="text-center sm:w-3/4 lg:w-1/2 p-2">
           <h1 className="text-4xl font-bold">{shark.name} Shark</h1>
           <small>({shark.genus})</small>
           <SharkCarousel {...shark} />
