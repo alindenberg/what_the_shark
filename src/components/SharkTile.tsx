@@ -3,7 +3,6 @@ import Image from "next/image";
 export interface SharkType {
     id: number;
     name: string;
-    image: string;
     genus?: string;
 }
 

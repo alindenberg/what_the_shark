@@ -9,5 +9,4 @@ export default interface SharkType {
     size?: string;
     lifespan?: string;
     recorded_attacks?: string;
-    carousel_images?: string[];
 }
