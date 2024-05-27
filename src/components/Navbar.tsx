@@ -13,7 +13,7 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between flex-wrap bg-teal-600 p-6">
       <div className="flex items-center flex-shrink-0 text-white mr-6">
-        <Link href="/">Home</Link>
+        <Link aria-disabled={true} href="/">Home</Link>
       </div>
     </nav>
   );

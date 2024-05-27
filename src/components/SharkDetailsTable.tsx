@@ -1,12 +1,8 @@
-import { SharkType } from '../pages/sharks/[slug]';
+import SharkType from '@/types/SharkType';
 
-interface SharkDetailsTableProps {
-    shark: SharkType;
-}
-
-const SharkDetailsTable: React.FC<SharkDetailsTableProps> = ({ shark }) => {
+export default function SharkDetailsTable(shark: SharkType) {
     return (
-        <table className="table-auto">
+        <table className="table-auto bg-gray-300">
             <tbody>
                 <tr>
                     <td className="border px-4 py-2">Diet</td>
@@ -42,5 +38,3 @@ const SharkDetailsTable: React.FC<SharkDetailsTableProps> = ({ shark }) => {
         </table>
     );
 };
-
-export default SharkDetailsTable;

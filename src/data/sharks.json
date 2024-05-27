@@ -2,7 +2,6 @@
     {
         "id": 1,
         "name": "Hammerhead",
-        "image": "hammerhead.jpg",
         "description": "The hammerhead shark is a type of shark that is easily identified by the unique shape of its head. The hammerhead shark's head is flattened and laterally extended into a 'hammer' shape called the 'cephalofoil'.",
         "genus": "Sphyrnidae",
         "fun_facts": [
@@ -24,7 +23,6 @@
     {
         "id": 2,
         "name": "Great White",
-        "image": "great_white.jpg",
         "description": "The Great White Shark is a species of large shark which can be found in the coastal waters of all the major oceans. The Great White Shark is known for its size, with the largest individuals known to have approached or exceeded 6 meters (20 ft) in length.",
         "genus": "Carcharodon",
         "fun_facts": [
@@ -46,7 +44,6 @@
     {
         "id": 3,
         "name": "Tiger",
-        "image": "tiger.jpg",
         "description": "The tiger shark is a species of requiem shark and the only extant member of the genus Galeocerdo. It is a large macropredator, capable of attaining a length over 5 m (16 ft 5 in).",
         "genus": "Galeocerdo",
         "fun_facts": [
@@ -68,7 +65,6 @@
     {
         "id": 4,
         "name": "Bull",
-        "image": "bull.jpg",
         "description": "The bull shark is a species of shark that can be found in warm, shallow waters along coasts and in rivers. The bull shark is known for its aggressive behavior and is considered to be one of the most dangerous sharks in the world.",
         "genus": "Carcharhinus",
         "fun_facts": [
@@ -90,7 +86,6 @@
     {
         "id": 5,
         "name": "Blacktip",
-        "image": "blacktip.jpg",
         "description": "The blacktip shark is a species of requiem shark, and part of the family Carcharhinidae. It is common to coastal tropical and subtropical waters around the world.",
         "genus": "Carcharhinus",
         "fun_facts": [
@@ -110,8 +105,7 @@
     },
     {
         "id": 6,
-        "name": "Whitetip",
-        "image": "whitetip.jpg",
+        "name": "Oceanic Whitetip",
         "description": "The oceanic whitetip shark is a large pelagic shark inhabiting tropical and warm temperate seas. Its stocky body is most notable for its long, white-tipped, rounded fins.",
         "genus": "Carcharhinus",
         "fun_facts": [
@@ -132,7 +126,6 @@
     {
         "id": 7,
         "name": "Lemon",
-        "image": "lemon.jpg",
         "description": "The lemon shark is a species of shark from the family Carcharhinidae and is classified as a near-threatened species by the International Union for Conservation of Nature.",
         "genus": "Negaprion",
         "fun_facts": [
@@ -153,7 +146,6 @@
     {
         "id": 8,
         "name": "Basking",
-        "image": "basking.jpg",
         "description": "The basking shark is the second-largest living shark, after the whale shark, and one of three plankton-eating shark species, along with the whale shark and megamouth shark.",
         "genus": "Cetorhinus",
         "fun_facts": [
@@ -174,7 +166,6 @@
     {
         "id": 9,
         "name": "Whale",
-        "image": "whale.jpg",
         "description": "The whale shark is a slow-moving, filter-feeding carpet shark and the largest known extant fish species. It is the sole member of the genus Rhincodon and the family, Rhincodontidae.",
         "genus": "Rhincodon",
         "fun_facts": [
