@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
 
@@ -28,7 +29,7 @@ export default function SharkCarousel(shark: SharkType) {
                     className='mr-5 cursor-pointer'
                     onClick={handleLeftClick}
                 />
-                <img
+                <Image
                     src={`/sharks/${shark.name.toLowerCase().replace(' ', '_')}/${imgNames[imgIndex]}`}
                     alt={shark.name}
                     width={500}
