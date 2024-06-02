@@ -9,8 +9,9 @@ export default async function handler(
     req: NextApiRequest,
     res: NextApiResponse<Data>,
 ) {
+    console.log("sharks url ", process.env.SHARKS_URL)
     await fetch(`${process.env.SHARKS_URL}/sharks/${req.query.slug}/quiz/`)
         .then(response => response.json())
         .then(data => res.status(200).json(data))
-        .catch(err => { console.error("error getting quiz ", err); res.status(400).json({ name: 'error' }) });
+        .catch(() => res.status(400).json({ name: 'error' }));
 }

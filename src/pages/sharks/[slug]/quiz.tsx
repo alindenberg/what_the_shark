@@ -5,7 +5,7 @@ type Question = {
     id: string;
     text: string;
     options: { id: number; text: string }[];
-    answer: number;
+    answer: number;  // option id
 };
 
 export default function QuizPage() {
@@ -19,7 +19,12 @@ export default function QuizPage() {
     useEffect(() => {
         if (slug) {
             fetch(`/api/sharks/${slug}/quiz`)
-                .then((response) => response.json())
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error("Failed to load quiz");
+                    }
+                    return response.json();
+                })
                 .then((data) => setQuestions(data.quiz.map((q: any, index: number) => ({
                     id: index,
                     text: q.question,
