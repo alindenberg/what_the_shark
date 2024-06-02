@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-type Question = {
-    id: string;
-    text: string;
-    options: { id: number; text: string }[];
-    answer: number;  // option id
-};
+import QuestionCard from "@/components/QuestionCard";
+import Question from "@/types/Question";
+import QuizResults from "@/components/QuizResults";
 
 export default function QuizPage() {
     const router = useRouter();
     const { slug } = router.query;
+    const [score, setScore] = useState<number | null>(null);
+    const [viewingResults, setViewingResults] = useState<boolean>(false);
     const [questions, setQuestions] = useState<Question[]>([]);
     const [answers, setAnswers] = useState<{ [key: string]: number }>({});
     const [error, setError] = useState<string | null>(null);
     const [submitted, setSubmitted] = useState<boolean>(false);
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
 
     useEffect(() => {
         if (slug) {
@@ -38,8 +38,9 @@ export default function QuizPage() {
         }
     }, [slug]);
 
-    const handleChange = (questionId: string, optionId: number) => {
-        setAnswers((prev) => ({ ...prev, [questionId]: optionId }));
+    const handleChange = (optionId: number) => {
+        setAnswers((prev) => ({ ...prev, [currentQuestionIndex]: optionId }));
+        setCurrentQuestionIndex((prev) => prev + 1);
     };
 
     const handleSubmit = (e: React.FormEvent) => {
@@ -54,54 +55,72 @@ export default function QuizPage() {
                 }
                 return acc;
             }, 0);
+            setScore(score);
         } else {
             setError("Please answer all questions before submitting.");
         }
     };
 
-    const isIncorrectAnswer = (question: Question, option: { id: number; text: string }) => {
-        return submitted && question.answer !== option.id && answers[question.id] === option.id;;
-    }
+    const handleTryAgain = () => {
+        setAnswers({});
+        setSubmitted(false);
+        setCurrentQuestionIndex(0);
+        setViewingResults(false);
+        setScore(null);
+    };
 
-    const isCorrectAnswer = (question: Question, option: { id: number; text: string }) => {
-        return submitted && question.answer === option.id;
-    }
+    const handleViewResults = () => {
+        setViewingResults(true);
+    };
 
     return (
-        <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">Quiz</h1>
+        <div className="container min-h-screen flex flex-col mx-auto items-center p-4">
+            <h1 className="text-2xl font-bold mb-4">{slug} Shark Quiz</h1>
+            {score && <h3>Your score is {score} out of {questions.length}</h3>}
             {error && <p className="text-red-500">{error}</p>}
-            <form onSubmit={handleSubmit}>
-                {questions.map((question) => (
-                    <div key={question.id} className="mb-6">
-                        <p className="text-lg font-medium mb-2">{question.text}</p>
-                        {question.options.map((option) => (
-                            <div key={option.id} className="mb-2">
-                                <label >
-                                    < input
-                                        type="radio"
-                                        name={question.id}
-                                        value={option.id}
-                                        checked={answers[question.id] === option.id}
-                                        onChange={() => handleChange(question.id, option.id)}
-                                        className="form-radio"
-                                        disabled={submitted}
-                                    />
-                                    <span className={`ml-2 ${isCorrectAnswer(question, option) ? 'text-green-500' : isIncorrectAnswer(question, option) ? 'text-red-500' : ''}`}>{option.text}</span>
-                                </label>
-                            </div>
-                        ))}
-                    </div>
-                ))
-                }
+            {currentQuestionIndex < questions.length && (
+                <QuestionCard
+                    index={currentQuestionIndex}
+                    question={questions[currentQuestionIndex].text}
+                    options={questions[currentQuestionIndex].options}
+                    handleChange={handleChange}
+                />
+            )}
+            {!submitted && Object.keys(answers).length === questions.length && (
                 <button
                     type="submit"
-                    className={`bg-blue-500 text-white font-bold py-2 px-4 rounded ${Object.keys(answers).length !== questions.length ? 'opacity-50 hover:bg-blue-500' : 'hover:bg-blue-700'}`}
-                    disabled={Object.keys(answers).length !== questions.length || submitted}
+                    className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
+                    onClick={handleSubmit}
                 >
                     Submit
                 </button>
-            </form >
+            )}
+            {submitted && viewingResults && (
+                <QuizResults
+                    questions={questions}
+                    answers={answers}
+                    handleTryAgain={handleTryAgain}
+                />
+            )}
+            {submitted && !viewingResults && (
+                <div className="flex flex-col sm:flex-row">
+                    <button
+                        type="button"
+                        className="bg-green-500 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0 sm:mr-2"
+                        onClick={handleViewResults}
+                    >
+                        View Results
+                    </button>
+                    <button
+                        type="button"
+                        className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
+                        onClick={handleTryAgain}
+                    >
+                        Try Again
+                    </button>
+                </div>
+            )
+            }
         </div >
     );
 }
