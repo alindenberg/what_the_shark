@@ -4,24 +4,20 @@ interface QuestionCardProps {
     index: number;
     question: string;
     options: { id: number; text: string }[];
-    handleChange: (optionId: number) => void;
+    selection: number | null;
+    handleSelection: (optionId: number) => void;
 }
 
-export default function QuestionCard({ index, question, options, handleChange }: QuestionCardProps) {
+export default function QuestionCard({ index, question, options, selection, handleSelection }: QuestionCardProps) {
     const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
     useEffect(() => {
-        setSelectedOption(null);
+        setSelectedOption(selection);
     }, [question]);
 
     const handleOptionChange = (optionId: number) => {
         setSelectedOption(optionId);
-    };
-
-    const handleConfirm = () => {
-        if (selectedOption !== null) {
-            handleChange(selectedOption);
-        }
+        handleSelection(optionId);
     };
 
     return (
@@ -40,15 +36,6 @@ export default function QuestionCard({ index, question, options, handleChange }:
                     <span className="font-semibold">{option.text}</span>
                 </label>
             ))}
-            <div className="flex justify-end">
-                <button
-                    onClick={handleConfirm}
-                    className={`bg-blue-500 text-white font-bold py-2 px-4 rounded mt-4 ${selectedOption === null ? 'opacity-50' : 'hover:bg-blue-700'}`}
-                    disabled={selectedOption === null}
-                >
-                    Confirm
-                </button>
-            </div>
         </div>
     );
 }

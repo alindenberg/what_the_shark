@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faAngleLeft, faAngleRight } from '@fortawesome/free-solid-svg-icons'
+
 import QuestionCard from "@/components/QuestionCard";
 import Question from "@/types/Question";
 import QuizResults from "@/components/QuizResults";
@@ -9,6 +12,8 @@ export default function QuizPage() {
     const router = useRouter();
     const { slug } = router.query;
     const [score, setScore] = useState<number | null>(null);
+    const [canGoBack, setCanGoBack] = useState<boolean>(false);
+    const [canGoForward, setCanGoForward] = useState<boolean>(true);
     const [viewingResults, setViewingResults] = useState<boolean>(false);
     const [questions, setQuestions] = useState<Question[]>([]);
     const [answers, setAnswers] = useState<{ [key: string]: number }>({});
@@ -38,10 +43,19 @@ export default function QuizPage() {
         }
     }, [slug]);
 
-    const handleChange = (optionId: number) => {
-        setAnswers((prev) => ({ ...prev, [currentQuestionIndex]: optionId }));
-        setCurrentQuestionIndex((prev) => prev + 1);
-    };
+    useEffect(() => {
+        setCanGoBack(currentQuestionIndex > 0);
+        setCanGoForward(answers[currentQuestionIndex] !== undefined)
+    }, [currentQuestionIndex, answers, questions]);
+
+
+    const handleSelection = async (optionId: number) => {
+        setAnswers((prev) => ({
+            ...prev,
+            [currentQuestionIndex]: optionId,
+        }));
+    }
+
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -67,6 +81,8 @@ export default function QuizPage() {
         setCurrentQuestionIndex(0);
         setViewingResults(false);
         setScore(null);
+        setCanGoBack(false);
+        setCanGoForward(false);
     };
 
     const handleViewResults = () => {
@@ -78,48 +94,75 @@ export default function QuizPage() {
             <h1 className="text-2xl font-bold mb-4">{slug} Shark Quiz</h1>
             {score && <h3>Your score is {score} out of {questions.length}</h3>}
             {error && <p className="text-red-500">{error}</p>}
-            {currentQuestionIndex < questions.length && (
-                <QuestionCard
-                    index={currentQuestionIndex}
-                    question={questions[currentQuestionIndex].text}
-                    options={questions[currentQuestionIndex].options}
-                    handleChange={handleChange}
-                />
-            )}
-            {!submitted && Object.keys(answers).length === questions.length && (
-                <button
-                    type="submit"
-                    className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
-                    onClick={handleSubmit}
-                >
-                    Submit
-                </button>
-            )}
-            {submitted && viewingResults && (
-                <QuizResults
-                    questions={questions}
-                    answers={answers}
-                    handleTryAgain={handleTryAgain}
-                />
-            )}
-            {submitted && !viewingResults && (
-                <div className="flex flex-col sm:flex-row">
-                    <button
-                        type="button"
-                        className="bg-green-500 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0 sm:mr-2"
-                        onClick={handleViewResults}
-                    >
-                        View Results
-                    </button>
-                    <button
-                        type="button"
-                        className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
-                        onClick={handleTryAgain}
-                    >
-                        Try Again
-                    </button>
-                </div>
+            {questions.length && !submitted && (
+                <>
+                    <QuestionCard
+                        index={currentQuestionIndex}
+                        question={questions[currentQuestionIndex].text}
+                        options={questions[currentQuestionIndex].options}
+                        selection={answers[currentQuestionIndex]}
+                        handleSelection={handleSelection}
+                    />
+
+                    {/* <div className="flex justify-between"> */}
+                    <div className="inline-flex">
+                        <button
+                            className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l ${canGoBack ? '' : 'opacity-50'}`}
+                            disabled={!canGoBack}
+                            onClick={() => { setCurrentQuestionIndex((prev) => prev - 1) }}>
+                            Prev
+                        </button>
+                        {currentQuestionIndex < questions.length - 1 ? (
+                            <button
+                                className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r ${canGoForward ? '' : 'opacity-50'}`}
+                                disabled={!canGoForward}
+                                onClick={() => { setCurrentQuestionIndex((prev) => prev + 1) }}
+                            >
+                                Next
+                            </button>
+                        ) : (
+                            <button
+                                type="submit"
+                                className={`bg-blue-500 text-white font-bold py-2 px-4 rounded ${canGoForward ? '' : 'opacity-50'}`}
+                                disabled={!canGoForward}
+                                onClick={handleSubmit}
+                            >
+                                Submit
+                            </button>
+                        )}
+                    </div>
+                    {/* </div> */}
+                </>
             )
+            }
+            {
+                submitted && viewingResults && (
+                    <QuizResults
+                        questions={questions}
+                        answers={answers}
+                        handleTryAgain={handleTryAgain}
+                    />
+                )
+            }
+            {
+                submitted && !viewingResults && (
+                    <div className="flex flex-col sm:flex-row">
+                        <button
+                            type="button"
+                            className="bg-green-500 text-white font-bold py-2 px-4 rounded mb-2 sm:mb-0 sm:mr-2"
+                            onClick={handleViewResults}
+                        >
+                            View Results
+                        </button>
+                        <button
+                            type="button"
+                            className="bg-blue-500 text-white font-bold py-2 px-4 rounded"
+                            onClick={handleTryAgain}
+                        >
+                            Try Again
+                        </button>
+                    </div>
+                )
             }
         </div >
     );

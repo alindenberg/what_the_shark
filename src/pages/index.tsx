@@ -37,7 +37,7 @@ export default function Home() {
       <div className="flex flex-col justify-center items-center w-full border-5">
         <div className="text-center mx-auto">
           <h1 className="text-2xl underline font-bold">Sharks</h1>
-          <h3 className="text-md font-medium">Explore the many types of beautiful sharks on this earth.</h3>
+          <h3 className="text-md font-medium">Explore the beautiful sharks of this earth.</h3>
         </div>
         <div className="p-2">
           <Sort sortOrder={sortOrder} handler={handleSortChange} />
