@@ -22,11 +22,11 @@ export default function SharkCarousel(shark: SharkType) {
 
     return (
         <div>
-            <div className="flex w-full justify-center items-center p-4">
+            <div className="flex justify-center items-center m-4">
                 <FontAwesomeIcon
                     size="2x"
                     icon={faAngleLeft}
-                    className='mr-5 cursor-pointer'
+                    className='cursor-pointer'
                     onClick={handleLeftClick}
                 />
                 <Image
@@ -38,7 +38,7 @@ export default function SharkCarousel(shark: SharkType) {
                 <FontAwesomeIcon
                     size="2x"
                     icon={faAngleRight}
-                    className='ml-5 cursor-pointer'
+                    className='cursor-pointer'
                     onClick={handleRightClick}
                 />
             </div >
