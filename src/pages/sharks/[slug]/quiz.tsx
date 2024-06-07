@@ -20,6 +20,7 @@ export default function QuizPage() {
     const [error, setError] = useState<string | null>(null);
     const [submitted, setSubmitted] = useState<boolean>(false);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+    const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
         if (slug) {
@@ -30,16 +31,22 @@ export default function QuizPage() {
                     }
                     return response.json();
                 })
-                .then((data) => setQuestions(data.quiz.map((q: any, index: number) => ({
-                    id: index,
-                    text: q.question,
-                    options: q.answers.map((a: string, i: number) => ({
-                        id: i,
-                        text: a,
-                    })),
-                    answer: q.correct,
-                }))))
-                .catch(() => setError("Failed to load quiz"));
+                .then((data) => {
+                    setQuestions(data.quiz.map((q: any, index: number) => ({
+                        id: index,
+                        text: q.question,
+                        options: q.answers.map((a: string, i: number) => ({
+                            id: i,
+                            text: a,
+                        })),
+                        answer: q.correct,
+                    })));
+                    setLoading(false);
+                })
+                .catch(() => {
+                    setError("Failed to load quiz");
+                    setLoading(false);
+                });
         }
     }, [slug]);
 
@@ -48,14 +55,12 @@ export default function QuizPage() {
         setCanGoForward(answers[currentQuestionIndex] !== undefined)
     }, [currentQuestionIndex, answers, questions]);
 
-
     const handleSelection = async (optionId: number) => {
         setAnswers((prev) => ({
             ...prev,
             [currentQuestionIndex]: optionId,
         }));
     }
-
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -89,12 +94,16 @@ export default function QuizPage() {
         setViewingResults(true);
     };
 
+    if (loading) {
+        return <div className="h-screen w-screen flex items-center justify-center">Loading...</div>;
+    }
+
     return (
         <div className="container min-h-screen flex flex-col mx-auto items-center p-4">
             <h1 className="text-2xl font-bold mb-4">{slug} Shark Quiz</h1>
             {score && <h3>Your score is {score} out of {questions.length}</h3>}
             {error && <p className="text-red-500">{error}</p>}
-            {questions.length && !submitted && (
+            {!!questions.length && !submitted && (
                 <>
                     <QuestionCard
                         index={currentQuestionIndex}
@@ -104,7 +113,6 @@ export default function QuizPage() {
                         handleSelection={handleSelection}
                     />
 
-                    {/* <div className="flex justify-between"> */}
                     <div className="inline-flex">
                         <button
                             className={`bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l ${canGoBack ? '' : 'opacity-50'}`}
@@ -131,7 +139,6 @@ export default function QuizPage() {
                             </button>
                         )}
                     </div>
-                    {/* </div> */}
                 </>
             )
             }
