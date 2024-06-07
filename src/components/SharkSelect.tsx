@@ -4,9 +4,6 @@ import { Menu, MenuButton, MenuItem, MenuItems, Transition } from '@headlessui/r
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Sharks from '@/data/sharks.json'
 
-function classNames(...classes) {
-    return classes.filter(Boolean).join(' ')
-}
 
 export default function SharkSelect(props: any) {
     const router = useRouter();

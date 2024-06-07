@@ -5,7 +5,7 @@ import SharkSelect from '@/components/SharkSelect';
 const Navbar = () => {
   const router = useRouter();
 
-  const handleSharkChange = (event) => {
+  const handleSharkChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const sharkSlug = event.target.value;
     router.push(`/sharks/${sharkSlug}`);
   };
