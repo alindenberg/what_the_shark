@@ -24,7 +24,6 @@ export default function SharkSelect(props: any) {
                 return;
             }
             const option = Sharks.findIndex((shark) => shark.name.toLowerCase().replace(' ', '_') === sharkName);
-            console.log("option is ", option)
             setSelectedOption(option);
         }
     }, [router.pathname]);
