@@ -35,7 +35,7 @@ export default function SharkSelect(props: any) {
     return (
         <Menu as="div" onChange={handleChange} className="relative inline-block text-left">
             <div>
-                <MenuButton className="inline-flex w-full justify-center gap-x-1.5 rounded-md text-white">
+                <MenuButton className={`inline-flex w-full justify-center gap-x-1.5 rounded-md text-white`}>
                     {selectedOption != null ? Sharks[selectedOption].name : 'Select a shark'}
                     <ChevronDownIcon className="-mr-1 h-5 w-5 text-white" aria-hidden="true" />
                 </MenuButton>
@@ -61,10 +61,11 @@ export default function SharkSelect(props: any) {
                                     {shark.name}
                                 </a>
                             </MenuItem>
-                        ))}
-                    </div>
-                </MenuItems>
-            </Transition>
-        </Menu>
+                        ))
+                        }
+                    </div >
+                </MenuItems >
+            </Transition >
+        </Menu >
     )
 }
