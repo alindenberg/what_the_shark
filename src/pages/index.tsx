@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import SharkTile from "@/components/SharkTile";
 import Sort from "@/components/Sort";
 import Sharks from "@/data/sharks.json";
+import Layout from "@/components/Layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -31,23 +32,25 @@ export default function Home() {
   };
 
   return (
-    <main
-      className={`flex min-h-screen flex-col items-center md:pt-12 pt-6 ${inter.className}`}
-    >
-      <div className="flex flex-col justify-center items-center w-full border-5">
-        <div className="text-center mx-auto">
-          <h1 className="text-2xl underline font-bold">Sharks</h1>
-          <h3 className="text-md font-medium">Explore the beautiful sharks of this earth.</h3>
+    <Layout>
+      <main
+        className={`flex flex-col items-center md:pt-12 ${inter.className}`}
+      >
+        <div className="flex flex-col justify-center items-center w-full border-5">
+          <div className="text-center mx-auto">
+            <h1 className="text-2xl underline font-bold">Sharks</h1>
+            <h3 className="text-md font-medium">Explore the beautiful sharks of this earth.</h3>
+          </div>
+          <div className="p-2">
+            <Sort sortOrder={sortOrder} handler={handleSortChange} />
+          </div>
         </div>
-        <div className="p-2">
-          <Sort sortOrder={sortOrder} handler={handleSortChange} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-3">
+          {sortedSharks.map((shark) => (
+            <SharkTile key={shark.id} {...shark} />
+          ))}
         </div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pt-3">
-        {sortedSharks.map((shark) => (
-          <SharkTile key={shark.id} {...shark} />
-        ))}
-      </div>
-    </main>
+      </main>
+    </Layout>
   );
 }
