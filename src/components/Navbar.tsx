@@ -22,8 +22,8 @@ const Navbar = () => {
 
   return (
     <nav className="flex items-center flex-wrap p-6">
-      <Link className={`pr-4 ${isHome ? 'opacity-50 cursor-default' : 'hover:text-blue-600'}`} href="/" onClick={(e) => router.pathname === '/' && e.preventDefault()}>
-        <FontAwesomeIcon icon={faHome} className="pr-2" />
+      <Link className={`flex items-center mr-2 ${isHome ? 'opacity-50 cursor-default' : 'hover:text-blue-600'}`} href="/" onClick={(e) => router.pathname === '/' && e.preventDefault()}>
+        <FontAwesomeIcon icon={faHome} className='mr-2' />
         Sharks
       </Link>
       {!isHome && (
