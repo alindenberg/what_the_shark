@@ -11,7 +11,7 @@ export default function SharkTile(shark: SharkType) {
         <a
             key={shark.id}
             href={`/sharks/${shark.name.toLowerCase().replace(' ', '_')}`}
-            className="border-2 border-blue-300 text-center p-2 transform transition duration-500 ease-in-out hover:scale-105">
+            className="border-2 border-slate-400 text-center p-2 transform transition duration-500 ease-in-out hover:scale-105">
             <Image
                 src={`/sharks/${shark.name.toLowerCase().replace(' ', '_')}/index.jpg`}
                 alt={shark.name}

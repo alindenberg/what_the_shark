@@ -21,7 +21,6 @@ export default function QuizPage() {
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        return;
         if (slug) {
             fetch(`/api/sharks/${slug}/quiz`)
                 .then((response) => {

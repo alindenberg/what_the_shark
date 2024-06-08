@@ -22,14 +22,16 @@ export default function Sharks({ shark }: { shark: SharkType }) {
 
   return (
     <Layout>
-      <div className="flex flex-col items-center pt-10">
+      <div className="flex flex-col items-center">
         {shark && (
           <div className="text-center sm:w-3/4 lg:w-1/2 p-2">
             <h1 className="text-4xl font-bold">{shark.name} Shark</h1>
             <small>({shark.genus})</small>
             <div className="flex flex-col items-center sm:pt-2">
               <SharkCarousel {...shark} />
-              <p className="my-5">{shark.description}</p>
+              <div className="lg:w-3/4">
+                <p className="my-5">{shark.description}</p>
+              </div>
               <SharkDetailsTable {...shark} />
               <button
                 onClick={() => router.push(`${router.asPath}/quiz`)}
