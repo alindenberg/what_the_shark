@@ -21,6 +21,7 @@ export default function QuizPage() {
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
+        return;
         if (slug) {
             fetch(`/api/sharks/${slug}/quiz`)
                 .then((response) => {
@@ -93,12 +94,16 @@ export default function QuizPage() {
     };
 
     if (loading) {
-        return <div className="h-screen w-screen flex items-center justify-center">Loading...</div>;
+        return (
+            <Layout>
+                <div className="flex-grow flex items-center justify-center">Loading...</div>
+            </Layout>
+        )
     }
 
     return (
         <Layout>
-            <div className="container min-h-screen flex flex-col mx-auto items-center p-4">
+            <div className="container flex flex-col mx-auto items-center p-4">
                 <h1 className="text-2xl font-bold mb-4">{slug} Shark Quiz</h1>
                 {score && <h3>Your score is {score} out of {questions.length}</h3>}
                 {error && <p className="text-red-500">{error}</p>}

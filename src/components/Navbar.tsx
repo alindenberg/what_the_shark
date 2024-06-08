@@ -23,20 +23,20 @@ const Navbar = () => {
   return (
     <nav className="flex items-center flex-wrap p-6">
       <Link className={`flex items-center mr-2 ${isHome ? 'opacity-50 cursor-default' : 'hover:text-blue-600'}`} href="/" onClick={(e) => router.pathname === '/' && e.preventDefault()}>
-        <FontAwesomeIcon icon={faHome} className='mr-2' />
+        <FontAwesomeIcon icon={faHome} className='mr-2 w-4' />
         Sharks
       </Link>
       {!isHome && (
         <>
           <>
-            <FontAwesomeIcon icon={faAngleRight} className="pr-2" />
+            <FontAwesomeIcon icon={faAngleRight} className="pr-2 w-4" />
             <Link className={`pr-4 ${isViewingShark ? 'opacity-50 cursor-default' : 'hover:text-blue-600'}`} href={`/sharks/${router.query.slug}`}>
               {router.query.slug?.toString().toLocaleUpperCase()}
             </Link>
           </>
           {isViewingQuiz && (
             <>
-              <FontAwesomeIcon icon={faAngleRight} className="pr-2" />
+              <FontAwesomeIcon icon={faAngleRight} className="pr-2 w-4" />
               <Link className="opacity-50 cursor-default" href="#">
                 Quiz
               </Link>

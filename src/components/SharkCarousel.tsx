@@ -26,7 +26,7 @@ export default function SharkCarousel(shark: SharkType) {
                 <FontAwesomeIcon
                     size="2x"
                     icon={faAngleLeft}
-                    className='cursor-pointer'
+                    className='cursor-pointer w-4 p-2'
                     onClick={handleLeftClick}
                 />
                 <Image
@@ -38,7 +38,7 @@ export default function SharkCarousel(shark: SharkType) {
                 <FontAwesomeIcon
                     size="2x"
                     icon={faAngleRight}
-                    className='cursor-pointer'
+                    className='cursor-pointer w-4 p-2'
                     onClick={handleRightClick}
                 />
             </div >

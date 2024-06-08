@@ -34,7 +34,7 @@ export default function Home() {
   return (
     <Layout>
       <main
-        className={`flex flex-col items-center md:pt-12 ${inter.className}`}
+        className={`flex flex-col items-center ${inter.className}`}
       >
         <div className="flex flex-col justify-center items-center w-full border-5">
           <div className="text-center mx-auto">
