@@ -8,7 +8,7 @@ import QuizResults from "@/components/QuizResults";
 
 export default function QuizPage() {
     const router = useRouter();
-    const { slug } = router.query;
+    const slug = String(router.query.slug);
     const [score, setScore] = useState<number | null>(null);
     const [canGoBack, setCanGoBack] = useState<boolean>(false);
     const [canGoForward, setCanGoForward] = useState<boolean>(true);
@@ -95,15 +95,22 @@ export default function QuizPage() {
     if (loading) {
         return (
             <Layout>
-                <div className="flex-grow flex items-center justify-center">Loading...</div>
+                <div className="flex-grow flex items-center justify-center">Generating a brand new quiz just for you...</div>
             </Layout>
         )
     }
 
+    const transformSlugToName = (slug: string) => {
+        return slug
+            .split('_')
+            .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+            .join(' ');
+    };
+
     return (
         <Layout>
             <div className="container flex flex-col mx-auto items-center p-4">
-                <h1 className="text-2xl font-bold mb-4">{slug} Shark Quiz</h1>
+                <h1 className="text-2xl font-bold mb-4">{transformSlugToName(slug)} Shark Quiz</h1>
                 {score && <h3>Your score is {score} out of {questions.length}</h3>}
                 {error && <p className="text-red-500">{error}</p>}
                 {!!questions.length && !submitted && (
