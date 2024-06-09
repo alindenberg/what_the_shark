@@ -20,6 +20,13 @@ const Navbar = () => {
     setIsViewingQuiz(router.pathname.includes('/quiz'));
   }, [router.pathname]);
 
+  const transformSlugToName = (slug: string) => {
+    return slug
+      .split('_')
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join(' ');
+  };
+
   return (
     <nav className="flex items-center flex-wrap p-6">
       <Link className={`flex items-center mr-2 ${isHome ? 'opacity-50 cursor-default' : 'hover:text-blue-600'}`} href="/" onClick={(e) => router.pathname === '/' && e.preventDefault()}>
@@ -30,9 +37,9 @@ const Navbar = () => {
         <>
           <>
             <FontAwesomeIcon icon={faAngleRight} className="pr-2 w-4" />
-            <Link className={`pr-4 ${isViewingShark ? 'opacity-50 cursor-default' : 'hover:text-blue-600'}`} href={`/sharks/${router.query.slug}`}>
-              {router.query.slug?.toString().toLocaleUpperCase()}
-            </Link>
+            {!!router.query.slug && <Link className={`pr-2 ${isViewingShark ? 'opacity-50 cursor-default' : 'hover:text-blue-600'}`} href={`/sharks/${router.query.slug}`}>
+              {transformSlugToName(router.query.slug as string)}
+            </Link>}
           </>
           {isViewingQuiz && (
             <>
