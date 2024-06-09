@@ -32,13 +32,13 @@ export default function Sharks({ shark }: { shark: SharkType }) {
               <div className="lg:w-3/4">
                 <p className="my-5">{shark.description}</p>
               </div>
-              <SharkDetailsTable {...shark} />
               <button
                 onClick={() => router.push(`${router.asPath}/quiz`)}
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-4 rounded-full w-3/4 md:w-1/2"
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 mb-4 px-4 rounded-full w-3/4 md:w-1/2"
               >
                 Take the Quiz
               </button>
+              <SharkDetailsTable {...shark} />
             </div>
           </div>
         )}
