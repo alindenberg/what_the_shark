@@ -7,7 +7,7 @@ interface SortProps {
 export default function Sort(props: SortProps) {
     return (
         <div>
-            <select id="sort" value={props.sortOrder} onChange={props.handler}>
+            <select className="dark:text-black" id="sort" value={props.sortOrder} onChange={props.handler}>
                 <option value="asc">Name (A-Z)</option>
                 <option value="desc">Name (Z-A)</option>
                 <option value="popularity">Popularity</option>

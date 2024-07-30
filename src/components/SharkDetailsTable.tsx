@@ -2,7 +2,7 @@ import SharkType from '@/types/SharkType';
 
 export default function SharkDetailsTable(shark: SharkType) {
     return (
-        <table className="table-auto bg-gray-300">
+        <table className="table-auto dark:bg-black-300 light:bg-gray-300">
             <tbody>
                 <tr>
                     <td className="border px-4 py-2">Diet</td>
