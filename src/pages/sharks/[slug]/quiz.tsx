@@ -5,10 +5,11 @@ import Layout from "@/components/Layout";
 import QuestionCard from "@/components/QuestionCard";
 import Question from "@/types/Question";
 import QuizResults from "@/components/QuizResults";
+import { fetchQuiz } from "@/services/quizService";
 
 export default function QuizPage() {
     const router = useRouter();
-    const slug = String(router.query.slug);
+    const slug = router.query.slug ? String(router.query.slug) : null;
     const [score, setScore] = useState<number | null>(null);
     const [canGoBack, setCanGoBack] = useState<boolean>(false);
     const [canGoForward, setCanGoForward] = useState<boolean>(true);
@@ -21,16 +22,12 @@ export default function QuizPage() {
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        if (slug) {
-            fetch(`/api/sharks/${slug}/quiz`)
-                .then((response) => {
-                    if (!response.ok) {
-                        throw new Error("Failed to load quiz");
-                    }
-                    return response.json();
-                })
-                .then((data) => {
-                    setQuestions(data.quiz.map((q: any, index: number) => ({
+        const fetchData = async () => {
+            console.log("fetching data")
+            if (slug) {
+                try {
+                    const quiz = await fetchQuiz(slug);
+                    setQuestions(quiz.map((q: any, index: number) => ({
                         id: index,
                         text: q.question,
                         options: q.answers.map((a: string, i: number) => ({
@@ -40,12 +37,14 @@ export default function QuizPage() {
                         answer: q.correct,
                     })));
                     setLoading(false);
-                })
-                .catch(() => {
+                    setError(null);
+                } catch (error) {
                     setError("Failed to load quiz");
                     setLoading(false);
-                });
-        }
+                }
+            }
+        };
+        fetchData();
     }, [slug]);
 
     useEffect(() => {

@@ -1,6 +1,9 @@
+import { useEffect } from 'react';
 import { useRouter } from 'next/router'
-import SharkDetailsTable from '@/components/SharkDetailsTable'
+
+import { fetchQuiz } from '@/services/quizService'
 import SharkCarousel from '@/components/SharkCarousel'
+import SharkDetailsTable from '@/components/SharkDetailsTable'
 import SharkData from '@/data/sharks.json'
 import SharkType from '@/types/SharkType';
 import Layout from '@/components/Layout';
@@ -18,7 +21,14 @@ export async function getStaticProps({ params }: any) {
 }
 
 export default function Sharks({ shark }: { shark: SharkType }) {
-  const router = useRouter()
+  const router = useRouter();
+  const slug = router.query.slug ? String(router.query.slug) : null;
+
+  useEffect(() => {
+    if (slug) {
+      fetchQuiz(slug);
+    }
+  }, [slug]);
 
   return (
     <Layout>
