@@ -23,7 +23,6 @@ export default function QuizPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            console.log("fetching data")
             if (slug) {
                 try {
                     const quiz = await fetchQuiz(slug);
@@ -108,7 +107,7 @@ export default function QuizPage() {
 
     return (
         <Layout>
-            <div className="container flex flex-col mx-auto items-center p-4">
+            {slug && <div className="container flex flex-col mx-auto items-center p-4">
                 <h1 className="text-2xl font-bold mb-4">{transformSlugToName(slug)} Shark Quiz</h1>
                 {score && <h3>Your score is {score} out of {questions.length}</h3>}
                 {error && <p className="text-red-500">{error}</p>}
@@ -180,7 +179,7 @@ export default function QuizPage() {
                         </div>
                     )
                 }
-            </div >
+            </div >}
         </Layout>
     );
 }
