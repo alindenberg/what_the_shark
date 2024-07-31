@@ -24,12 +24,6 @@ export default function Sharks({ shark }: { shark: SharkType }) {
   const router = useRouter();
   const slug = router.query.slug ? String(router.query.slug) : null;
 
-  useEffect(() => {
-    if (slug) {
-      fetchQuiz(slug);
-    }
-  }, [slug]);
-
   return (
     <Layout>
       <div className="flex flex-col items-center">

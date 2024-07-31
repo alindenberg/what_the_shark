@@ -7,7 +7,7 @@ export const fetchQuiz = async (slug: string): Promise<Question[]> => {
     }
 
     try {
-        const response = await fetch(`/api/sharks/${slug}/quiz`);
+        const response = await fetch(`${process.env.SHARKS_URL}/sharks/${slug}/quiz/`);
         if (!response.ok) {
             throw new Error('Failed to load quiz');
         }

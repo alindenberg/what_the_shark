@@ -1,16 +1,20 @@
-// Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+import Question from "@/types/Question";
+import { fetchQuiz } from "@/services/quizService";
+
 import type { NextApiRequest, NextApiResponse } from "next";
 
-type Data = {
-    name: string;
+type Response = {
+    error: string;
+    quiz: Question[];
 };
 
 export default async function handler(
     req: NextApiRequest,
-    res: NextApiResponse<Data>,
+    res: NextApiResponse<Response>,
 ) {
-    await fetch(`${process.env.SHARKS_URL}/sharks/${req.query.slug}/quiz/`)
-        .then(response => response.json())
-        .then(data => res.status(200).json(data))
-        .catch(() => res.status(400).json({ name: 'error' }));
+    await fetchQuiz(req.query.slug as string)
+        .then(data => res.status(200).json({ quiz: data, error: "" }))
+        .catch((err) => {
+            res.status(400).json({ quiz: [], error: err.message })
+        });
 }

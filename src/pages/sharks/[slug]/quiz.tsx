@@ -25,18 +25,26 @@ export default function QuizPage() {
         const fetchData = async () => {
             if (slug) {
                 try {
-                    const quiz = await fetchQuiz(slug);
-                    setQuestions(quiz.map((q: any, index: number) => ({
-                        id: index,
-                        text: q.question,
-                        options: q.answers.map((a: string, i: number) => ({
-                            id: i,
-                            text: a,
-                        })),
-                        answer: q.correct,
-                    })));
-                    setLoading(false);
-                    setError(null);
+                    await fetch(`/api/sharks/${slug}/quiz`)
+                        .then((res) => res.json())
+                        .then((data) => data.quiz)
+                        .then((quiz) => {
+                            setQuestions(quiz.map((q: any, index: number) => ({
+                                id: index,
+                                text: q.question,
+                                options: q.answers.map((a: string, i: number) => ({
+                                    id: i,
+                                    text: a,
+                                })),
+                                answer: q.correct,
+                            })));
+                            setLoading(false);
+                            setError(null);
+                        })
+                        .catch((err) => {
+                            console.error(err);
+                            throw new Error('Failed to load quiz');
+                        });
                 } catch (error) {
                     setError("Failed to load quiz");
                     setLoading(false);
@@ -90,20 +98,23 @@ export default function QuizPage() {
         setViewingResults(true);
     };
 
-    if (loading) {
-        return (
-            <Layout>
-                <div className="flex-grow flex items-center justify-center">Generating a brand new quiz just for you...</div>
-            </Layout>
-        )
-    }
-
     const transformSlugToName = (slug: string) => {
         return slug
             .split('_')
             .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
             .join(' ');
     };
+
+    if (loading) {
+        return (
+            <Layout>
+                <div className="container flex flex-col mx-auto items-center p-4 flex-grow">
+                    {slug && <h1 className="text-2xl font-bold mb-4">{transformSlugToName(slug)} Shark Quiz</h1>}
+                    <div className="flex-grow flex items-center justify-center">Generating a brand new quiz just for you...</div>
+                </div>
+            </Layout >
+        )
+    }
 
     return (
         <Layout>
