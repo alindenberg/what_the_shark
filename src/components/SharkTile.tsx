@@ -17,6 +17,7 @@ export default function SharkTile(shark: SharkType) {
                 alt={shark.name}
                 width={300}
                 height={200}
+                priority={true}
             />
             <p>{shark.name}</p>
             <small>{shark.genus}</small>

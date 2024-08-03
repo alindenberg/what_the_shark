@@ -34,7 +34,9 @@ export default function SharkCarousel(shark: SharkType) {
                     alt={shark.name}
                     width={500}
                     height={400}
-                    style={{ borderRadius: '50%' }} />
+                    style={{ borderRadius: '50%' }}
+                    loading={imgIndex === 0 ? 'eager' : 'lazy'}
+                />
                 <FontAwesomeIcon
                     size="2x"
                     icon={faAngleRight}
